@@ -8,4 +8,6 @@
 
     # change DB_HOST=mysql to #DB_HOST=127.0.0.1
     # run
+    php artisan migrate
+
     php artisan db:seed
