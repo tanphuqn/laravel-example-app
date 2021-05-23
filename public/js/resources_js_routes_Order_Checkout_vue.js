@@ -323,6 +323,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -330,13 +385,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       stripe: {},
       cardElement: {},
       customer: {
-        first_name: '',
-        last_name: '',
-        email: '',
-        address: '',
-        city: '',
-        state: '',
-        zip_code: ''
+        first_name: "",
+        last_name: "",
+        email: "",
+        address: "",
+        city: "",
+        state: "",
+        zip_code: ""
       },
       paymentProcessing: false
     };
@@ -356,13 +411,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 2:
               _this.stripe = _context.sent;
               elements = _this.stripe.elements();
-              _this.cardElement = elements.create('card', {
+              _this.cardElement = elements.create("card", {
                 classes: {
-                  base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'
+                  base: "bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out"
                 }
               });
 
-              _this.cardElement.mount('#card-element');
+              _this.cardElement.mount("#card-element");
 
             case 6:
             case "end":
@@ -376,9 +431,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     cartLineTotal: function cartLineTotal(item) {
       var amount = item.price * item.quantity;
       amount = amount / 100;
-      return amount.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
+      return amount.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
       });
     },
     processPayment: function processPayment() {
@@ -393,9 +448,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this2.paymentProcessing = true;
                 _context2.next = 3;
-                return _this2.stripe.createPaymentMethod('card', _this2.cardElement, {
+                return _this2.stripe.createPaymentMethod("card", _this2.cardElement, {
                   billing_details: {
-                    name: _this2.customer.first_name + ' ' + _this2.customer.last_name,
+                    name: _this2.customer.first_name + " " + _this2.customer.last_name,
                     email: _this2.customer.email,
                     address: {
                       line1: _this2.customer.address,
@@ -421,16 +476,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     return acc + item.price * item.quantity;
                   }, 0);
                   _this2.customer.cart = JSON.stringify(_this2.$store.state.cart);
-                  axios.post('/api/purchase', _this2.customer).then(function (response) {
+                  axios.post("/api/purchase", _this2.customer).then(function (response) {
                     _this2.paymentProcessing = false;
                     console.log(response);
 
-                    _this2.$store.commit('updateOrder', response.data);
+                    _this2.$store.commit("updateOrder", response.data);
 
-                    _this2.$store.dispatch('clearCart');
+                    _this2.$store.dispatch("clearCart");
 
                     _this2.$router.push({
-                      name: 'order.summary'
+                      name: "order.summary"
                     });
                   })["catch"](function (error) {
                     _this2.paymentProcessing = false;
@@ -461,9 +516,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return acc + item.price * item.quantity;
       }, 0);
       amount = amount / 100;
-      return amount.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
+      return amount.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
       });
     }
   }
@@ -1330,10 +1385,18 @@ var render = function() {
             [
               _vm._l(_vm.cart, function(item, index) {
                 return _c("tr", { key: item.id }, [
-                  _c("td", {
-                    staticClass: "p-4",
-                    domProps: { textContent: _vm._s(item.name) }
-                  }),
+                  _c("td", { staticClass: "p-4" }, [
+                    _vm._v("\n                        " + _vm._s(item.name)),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-red-600" }, [
+                      _vm._v("Color: " + _vm._s(item.color))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-blue-600" }, [
+                      _vm._v("Size: " + _vm._s(item.size))
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("td", {
                     staticClass: "p-4",
@@ -1357,7 +1420,11 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Remove")]
+                      [
+                        _vm._v(
+                          "\n                            Remove\n                        "
+                        )
+                      ]
                     )
                   ])
                 ])
@@ -1710,7 +1777,7 @@ var staticRenderFns = [
             staticClass:
               "px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl"
           },
-          [_vm._v("Item")]
+          [_vm._v("\n                        Item\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -1719,7 +1786,7 @@ var staticRenderFns = [
             staticClass:
               "px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
           },
-          [_vm._v("Quantity")]
+          [_vm._v("\n                        Quantity\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -1728,7 +1795,7 @@ var staticRenderFns = [
             staticClass:
               "px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
           },
-          [_vm._v("Price")]
+          [_vm._v("\n                        Price\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -1737,7 +1804,7 @@ var staticRenderFns = [
             staticClass:
               "px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
           },
-          [_vm._v("Actions")]
+          [_vm._v("\n                        Actions\n                    ")]
         )
       ])
     ])

@@ -31,22 +31,21 @@ class UserController extends Controller
         try {
 
             // user is not exist on stripe
-            if($user->stripe_id == ''){
+            if ($user->stripe_id == '') {
                 $user->createAsStripeCustomer();
             }
 
             $user->updateDefaultPaymentMethod($request->input('payment_method_id'));
-            // var_dump($stripeCustomer);
-            // var_dump($request->input('cart'));
             foreach (json_decode($request->input('cart'), true) as $item) {
                 // Step 1: create item invoice
                 $invoice_item = $user->tab(
-                    $item['name'],
+                    $item["name"] . '.Color:' . $item['color'],
                     $item['price'],
                     [
                         // 'quantity' => $item['quantity'],
                         'metadata' => [
                             'color' => $item['color'],
+                            'size' => $item['size'],
                         ]
                     ]
                 );
@@ -61,14 +60,6 @@ class UserController extends Controller
             ]);
 
             $invoice_info = $invoice->asStripeInvoice();
-            // echo("\n");
-            // var_dump($invoice_info->payment_intent);
-            // echo("\n");
-            // var_dump($invoice_info->total);
-            // echo("\n");
-            // var_dump($invoice_info);
-            // echo("\n");
-
             $order = $user->orders()
                 ->create([
                     'transaction_id' => $invoice_info->payment_intent,

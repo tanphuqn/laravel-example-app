@@ -53,6 +53,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     formatCurrency: function formatCurrency(amount) {
@@ -206,7 +217,7 @@ var render = function() {
                     domProps: { textContent: _vm._s(_vm.product.description) }
                   }),
                   _vm._v(" "),
-                  _c("p", [
+                  _c("p", { staticClass: "mt-6" }, [
                     _vm._v(
                       "\n                    Color:\n                    "
                     ),
@@ -256,6 +267,57 @@ var render = function() {
                     _vm._v(" "),
                     _c("span", [
                       _vm._v("Selected: " + _vm._s(_vm.product.color))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mt-6" }, [
+                    _vm._v("\n                    Size:\n                    "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.product.size,
+                            expression: "product.size"
+                          }
+                        ],
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.product,
+                              "size",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
+                          _vm._v("Please select one")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("M")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("L")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("XL")])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [
+                      _vm._v("Selected: " + _vm._s(_vm.product.size))
                     ])
                   ]),
                   _vm._v(" "),

@@ -13,7 +13,7 @@
                         v-text="product.name"
                     ></h1>
                     <p class="leading-relaxed" v-text="product.description"></p>
-                    <p>
+                    <p class="mt-6">
                         Color:
                         <select v-model="product.color">
                             <option disabled value="">Please select one</option>
@@ -22,6 +22,17 @@
                             <option>Black</option>
                         </select>
                         <span>Selected: {{ product.color }}</span>
+                    </p>
+
+                    <p class="mt-6">
+                        Size:
+                        <select v-model="product.size">
+                            <option disabled value="">Please select one</option>
+                            <option>M</option>
+                            <option>L</option>
+                            <option>XL</option>
+                        </select>
+                        <span>Selected: {{ product.size }}</span>
                     </p>
                     <div class="flex mt-6 pt-4 border-t-2 border-gray-200">
                         <span
