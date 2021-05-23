@@ -30,21 +30,23 @@ class UserController extends Controller
 
         try {
 
+            // // Get customer info is ok
+            // // example cus_JW5sgmdJAoWE7O
+            // $stripeCustomer = $user->createAsStripeCustomer();
+
             $user->updateDefaultPaymentMethod($request->input('payment_method_id'));
 
-            // Submit payment is ok
+            // // Submit payment is ok
             // $payment = $user->charge(
             //     $request->input('amount'),
             //     $request->input('payment_method_id')
             // );
 
-            // Get payment info is ok
+            // // Get payment info is ok
             // $php = $payment->asStripePaymentIntent();
 
-            // Get customer info is ok
-            // example cus_JW5sgmdJAoWE7O
-            // $stripeCustomer = $user->createAsStripeCustomer();
 
+            // var_dump($stripeCustomer);
             var_dump($request->input('cart'));
             // OK
             // $invoice = $user->newSubscription('default', 'price_1IsigRCBaoBKC4ddSm44Jt1L')
@@ -78,19 +80,26 @@ class UserController extends Controller
             //         ]
             //     );
 
-
-            $invoice = $user->invoice([
-                'description' => 'description master',
-                'collection_method'=>'send_invoice',
-                'lines' => [
-                    'data' => [
-                        'amount' => 50,
-                        'description' => 'Product 1',
+            foreach (json_decode($request->input('cart'), true) as $item) {
+                // Step 1: create item invoice
+                $invoice_item = $user->tab(
+                    $item['name'],
+                    $item['price'],
+                    [
+                        // 'quantity' => $item['quantity'],
                         'metadata' => [
-                            'color' => 'Red',
+                            'color' => $item['color'],
                         ]
                     ]
-                ]
+                );
+            }
+
+            // Setp 2: submit invoice
+            $invoice = $user->invoice([
+                'description' => 'description master',
+                'collection_method' => 'send_invoice',
+                'days_until_due' => 30,
+
             ]);
 
             // Subimit example invoice is ok
@@ -102,7 +111,7 @@ class UserController extends Controller
             // ]);
 
             var_dump($invoice);
-            return response()->json(['message' => $invoice], 500);
+            // return response()->json(['message' => $invoice], 500);
             // $order = $user->orders()
             //     ->create([
             //         'transaction_id' => $payment->charges->data[0]->id,
