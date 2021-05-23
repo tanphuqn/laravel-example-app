@@ -30,56 +30,14 @@ class UserController extends Controller
 
         try {
 
-            // // Get customer info is ok
-            // // example cus_JW5sgmdJAoWE7O
-            // $stripeCustomer = $user->createAsStripeCustomer();
+            // user is not exist on stripe
+            if($user->stripe_id == ''){
+                $user->createAsStripeCustomer();
+            }
 
             $user->updateDefaultPaymentMethod($request->input('payment_method_id'));
-
-            // // Submit payment is ok
-            // $payment = $user->charge(
-            //     $request->input('amount'),
-            //     $request->input('payment_method_id')
-            // );
-
-            // // Get payment info is ok
-            // $php = $payment->asStripePaymentIntent();
-
-
             // var_dump($stripeCustomer);
-            var_dump($request->input('cart'));
-            // OK
-            // $invoice = $user->newSubscription('default', 'price_1IsigRCBaoBKC4ddSm44Jt1L')
-            // ->create($request->input('payment_method_id'), [
-            //     'email' => $request->input('email'),
-            // ], [
-            //     'metadata' => ['note' => 'Some extra information.'],
-            // ]);
-
-            // // Subscription only accept price recurring type
-            // $invoice = $user->newSubscription('default', 'basic')
-            //     ->create(
-            //         $request->input('payment_method_id'),
-            //         [
-            //             'email' => $request->input('email'),
-            //             'name' => 'customer name',
-            //         ],
-            //         [
-            //             'items' => [
-            //                 [
-            //                     'price' => 'price_1IsigRCBaoBKC4ddSm44Jt1L',
-            //                     'quantity' => 1,
-            //                     'metadata' => [
-            //                         'description' => 'T-shirt',
-            //                         'color' => 'Red'
-            //                     ],
-            //                 ],
-
-            //             ],
-            //             // Any other subscription ot
-            //         ]
-            //     );
-
+            // var_dump($request->input('cart'));
             foreach (json_decode($request->input('cart'), true) as $item) {
                 // Step 1: create item invoice
                 $invoice_item = $user->tab(
@@ -102,30 +60,28 @@ class UserController extends Controller
 
             ]);
 
-            // Subimit example invoice is ok
-            // //    Create the Invoice
-            // $invoice = $user->invoiceFor('Stickers 1 s', 500, [
-            //     'metadata' => ['color'=> 'Red'],
-            // ], [
+            $invoice_info = $invoice->asStripeInvoice();
+            // echo("\n");
+            // var_dump($invoice_info->payment_intent);
+            // echo("\n");
+            // var_dump($invoice_info->total);
+            // echo("\n");
+            // var_dump($invoice_info);
+            // echo("\n");
 
-            // ]);
+            $order = $user->orders()
+                ->create([
+                    'transaction_id' => $invoice_info->payment_intent,
+                    'total' => $invoice_info->total
+                ]);
 
-            var_dump($invoice);
-            // return response()->json(['message' => $invoice], 500);
-            // $order = $user->orders()
-            //     ->create([
-            //         'transaction_id' => $payment->charges->data[0]->id,
-            //         'total' => $payment->charges->data[0]->amount
-            //     ]);
+            foreach (json_decode($request->input('cart'), true) as $item) {
+                $order->products()
+                    ->attach($item['id'], ['quantity' => $item['quantity']]);
+            }
 
-            // foreach (json_decode($request->input('cart'), true) as $item) {
-            //     $order->products()
-            //         ->attach($item['id'], ['quantity' => $item['quantity']]);
-            // }
-
-            // $order->load('products');
-            // return $order;
-            // return $invoice;
+            $order->load('products');
+            return $order;
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
