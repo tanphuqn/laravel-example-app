@@ -12,3 +12,10 @@
     php artisan migrate
 
     php artisan db:seed
+
+## Update Vuejs
+npm run dev
+
+## Drop All Tables & Migrate
+php artisan migrate:fresh
+php artisan migrate:fresh --seed

@@ -68,10 +68,15 @@ class UserController extends Controller
 
             foreach (json_decode($request->input('cart'), true) as $item) {
                 $order->products()
-                    ->attach($item['id'], ['quantity' => $item['quantity']]);
+                    ->attach($item['id'], [
+                        'quantity' => $item['quantity'],
+                        'note' => "Size:".$item['size']. ". Color: ".$item['color']
+                    ]
+                );
             }
 
             $order->load('products');
+
             return $order;
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);

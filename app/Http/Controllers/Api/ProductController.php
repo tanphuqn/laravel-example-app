@@ -16,8 +16,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $product->load();
-
+        // $product->load();
         return $product;
     }
 

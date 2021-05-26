@@ -43,14 +43,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     cartLineTotal: function cartLineTotal(item) {
       var amount = item.price * item.pivot.quantity;
       amount = amount / 100;
-      return amount.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
+      return amount.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
       });
     }
   },
@@ -68,9 +85,9 @@ __webpack_require__.r(__webpack_exports__);
         return acc + item.price * item.pivot.quantity;
       }, 0);
       amount = amount / 100;
-      return amount.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
+      return amount.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
       });
     }
   }
@@ -178,7 +195,7 @@ var render = function() {
       _c(
         "h1",
         { staticClass: "text-gray-900 text-3xl title-font font-medium mb-4" },
-        [_vm._v("Thank you for your purchase")]
+        [_vm._v("\n            Thank you for your purchase\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -192,10 +209,15 @@ var render = function() {
             [
               _vm._l(_vm.order.products, function(item) {
                 return _c("tr", { key: item.id }, [
-                  _c("td", {
-                    staticClass: "p-4",
-                    domProps: { textContent: _vm._s(item.name) }
-                  }),
+                  _c("td", { staticClass: "p-4" }, [
+                    _vm._v("\n                        " + _vm._s(item.name)),
+                    _c("br"),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(item.pivot.note) +
+                        "\n                    "
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("td", {
                     staticClass: "p-4",
@@ -245,7 +267,7 @@ var staticRenderFns = [
             staticClass:
               "px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl"
           },
-          [_vm._v("Item")]
+          [_vm._v("\n                        Item\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -254,7 +276,7 @@ var staticRenderFns = [
             staticClass:
               "px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
           },
-          [_vm._v("Quantity")]
+          [_vm._v("\n                        Quantity\n                    ")]
         ),
         _vm._v(" "),
         _c(
@@ -263,7 +285,7 @@ var staticRenderFns = [
             staticClass:
               "px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
           },
-          [_vm._v("Price")]
+          [_vm._v("\n                        Price\n                    ")]
         )
       ])
     ])
