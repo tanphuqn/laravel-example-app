@@ -39,7 +39,7 @@ class UserController extends Controller
             foreach (json_decode($request->input('cart'), true) as $item) {
                 // Step 1: create item invoice
                 $invoice_item = $user->tab(
-                    $item["name"] . '.Color:' . $item['color'],
+                    $item["name"] . '.Color:' . $item['color'].'. Size:' . $item['size'],
                     $item['price'],
                     [
                         // 'quantity' => $item['quantity'],
@@ -54,8 +54,8 @@ class UserController extends Controller
             // Setp 2: submit invoice
             $invoice = $user->invoice([
                 'description' => 'description master',
-                'collection_method' => 'send_invoice',
-                'days_until_due' => 30,
+                // 'collection_method' => 'send_invoice',
+                // 'days_until_due' => 30, // Only set for collection_method = send_invoice
 
             ]);
 
