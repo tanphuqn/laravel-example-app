@@ -36,6 +36,7 @@
                                     Products
                                 </router-link>
                             </nav>
+
                             <router-link
                                 class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
                                 :to="{name: 'order.checkout'}"
@@ -51,3 +52,5 @@
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>
+
+

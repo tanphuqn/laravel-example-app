@@ -27,6 +27,6 @@ module.exports = [
     {
         path: '/admin',
         name: 'admin.products.list',
-        component: () => import('./routes/Admin/Products/ProductList.vue')
+        component: () => import('./routes/Admin/ProductList.vue')
     },
 ]
