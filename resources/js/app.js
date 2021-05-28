@@ -3,11 +3,18 @@ require('./bootstrap')
 import Vue from "vue";
 
 import Vuex from "vuex";
-Vue.use(Vuex);
-
 import VueRouter from "vue-router";
-Vue.use(VueRouter);
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+import * as VeeValidate from 'vee-validate';
 
+Vue.use(Vuex);
+Vue.use(VueRouter);
+Vue.use(Buefy)
+Vue.use(VeeValidate, {
+    inject: true,
+    fieldsBagName: 'vvFields',
+  })
 const router = new VueRouter({
     mode: 'history',
     routes: require('./routes.js')
@@ -44,6 +51,13 @@ const store = new Vuex.Store({
         },
         updateCart(state, cart) {
             state.cart = cart;
+        },
+        addProducts(state, product) {
+            state.products.push(product);
+        },
+        deleteProducts(state, product) {
+            let index = state.products.findIndex(item => item.id === product.id);
+            state.products.splice(index, 1);
         }
     },
     actions: {

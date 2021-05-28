@@ -19,3 +19,6 @@ npm run dev
 ## Drop All Tables & Migrate
 php artisan migrate:fresh
 php artisan migrate:fresh --seed
+
+## Update compose
+composer install 

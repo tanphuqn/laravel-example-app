@@ -19,4 +19,7 @@ use App\Http\Controllers\Api\UserController;
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 Route::post('/purchase', [UserController::class, 'purchase']);
+Route::post('/products/add', [ProductController::class, 'addProduct']);
+Route::post('/products/delete', [ProductController::class, 'deleteProduct']);
+
 

@@ -21,6 +21,11 @@ Route::get('/', function () {
     return view('app');
 });
 
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+
 Route::any('/{any}', function() {
     return view('app');
 })->where('any', '.*');
