@@ -41,18 +41,11 @@ import VueRouter from "vue-router";
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import 'bulma/css/bulma.css'
-import '@mdi/font/css/materialdesignicons.css'
-import 'material-design-icons/iconfont/material-icons.css'
-
-import * as VeeValidate from 'vee-validate';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(Buefy)
-Vue.use(VeeValidate, {
-    inject: true,
-    fieldsBagName: 'vvFields',
-  })
+
 const router = new VueRouter({
     mode: 'history',
     routes: require('./routes.js')
