@@ -46,6 +46,14 @@ class UserController extends Controller
                         'metadata' => [
                             'color' => $item['color'],
                             'size' => $item['size'],
+                            'description' => $item['description'],
+                            'creator_email' => $item['creator_email'],
+                            'inventory' => $item['inventory'],
+                            'duration' => $item['duration'],
+                            'age_min' => $item['age_min'],
+                            'age_max' => $item['age_max'],
+                            'zoom_item_type' => $item['zoom_item_type'],
+                            'master_sku' => $item['master_sku'],
                         ]
                     ]
                 );
@@ -53,7 +61,7 @@ class UserController extends Controller
 
             // Setp 2: submit invoice
             $invoice = $user->invoice([
-                'description' => 'description master',
+                'description' => ' Test to create an invoice with payment on Stripe API',
                 // 'collection_method' => 'send_invoice',
                 // 'days_until_due' => 30, // Only set for collection_method = send_invoice
 
@@ -70,6 +78,9 @@ class UserController extends Controller
                 $order->products()
                     ->attach($item['id'], [
                         'quantity' => $item['quantity'],
+                        'size' => $item['size'],
+                        'color' => $item['color'],
+                        'metadata'=>json_encode($item),
                         'note' => "Size:".$item['size']. ". Color: ".$item['color']
                     ]
                 );
