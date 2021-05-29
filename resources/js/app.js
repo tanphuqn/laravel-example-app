@@ -40,6 +40,10 @@ import Vuex from "vuex";
 import VueRouter from "vue-router";
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+import 'bulma/css/bulma.css'
+import '@mdi/font/css/materialdesignicons.css'
+import 'material-design-icons/iconfont/material-icons.css'
+
 import * as VeeValidate from 'vee-validate';
 
 Vue.use(Vuex);
@@ -87,7 +91,7 @@ const store = new Vuex.Store({
             state.cart = cart;
         },
         addProducts(state, product) {
-            state.products.push(product);
+            state.products.unshift(product);
         },
         deleteProducts(state, product) {
             let index = state.products.findIndex(item => item.id === product.id);
@@ -110,8 +114,8 @@ const store = new Vuex.Store({
 });
 
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('index-front-component', require('./components/front/Index.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('index-front-component', require('./components/front/Index.vue').default);
 Vue.component('admin-product-component', require('./components/ProductList.vue').default);
 
 const app = new Vue({

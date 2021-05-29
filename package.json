@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.14.2",
+        "@mdi/font": "^5.9.55",
         "@stripe/stripe-js": "^1.15.0",
         "@vue/cli-plugin-babel": "^4.5.8",
         "@vue/cli-plugin-e2e-cypress": "^4.5.8",
@@ -23,6 +24,7 @@
         "jquery": "^3.6",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
+        "material-design-icons": "^3.0.1",
         "popper.js": "^1.16.1",
         "postcss": "^8.1.14",
         "resolve-url-loader": "^3.1.2",

@@ -17,8 +17,18 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('description');
+            $table->longText('description')->nullable();
             $table->integer('price')->default(0);
+            $table->string('title')->nullable();
+            $table->string('creator_email')->nullable();
+            $table->integer('inventory')->nullable()->default(0);
+            $table->integer('duration')->nullable()->default(0);
+            $table->integer('age_min')->nullable()->default(0);
+            $table->integer('age_max')->nullable()->default(0);
+            $table->string('shopify_pdp_image')->nullable();
+            $table->string('zoom_banner')->nullable();
+            $table->string('zoom_item_type')->nullable();
+            $table->string('master_sku')->nullable();
             $table->timestamps();
         });
     }

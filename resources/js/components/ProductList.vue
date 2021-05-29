@@ -1,6 +1,6 @@
 <template>
     <section class="text-gray-700 body-font">
-        <b-button @click="handleOpenModalEdit" class="ring-4 ring-indigo-300"
+        <b-button @click="handleOpenModalAdd" class="ring-4 ring-indigo-300"
             >Add Product</b-button
         >
         <b-table
@@ -83,33 +83,253 @@
                     </p>
                 </header>
                 <section class="modal-card-body">
-                    <!-- display_id -->
-                    <b-field v-bind:label="'ID'" v-if="!isNew">
-                        <b-input
-                            name="id"
-                            :disabled="true"
-                            v-model="selectProduct.id"
-                        ></b-input>
-                    </b-field>
-
-                    <b-field v-bind:label="'Name'">
-                        <b-input
-                            name="name"
-                            v-model="selectProduct.name"
-                        ></b-input>
-                    </b-field>
-                    <b-field v-bind:label="'Price'">
-                        <b-input
-                            name="price"
-                            v-model="selectProduct.price"
-                        ></b-input>
-                    </b-field>
-                    <b-field v-bind:label="'Description'">
-                        <b-input
-                            name="description"
-                            v-model="selectProduct.description"
-                        ></b-input>
-                    </b-field>
+                    <table style="width:100%">
+                        <tr v-if="!isNew">
+                            <td><label class="label">ID</label></td>
+                            <td>
+                                <b-input
+                                    name="id"
+                                    disabled
+                                    v-model="selectProduct.id"
+                                ></b-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label">Name</label></td>
+                            <td>
+                                <b-field>
+                                    <b-input
+                                        name="id"
+                                        placeholder="Name"
+                                        v-model="selectProduct.name"
+                                        required
+                                    ></b-input
+                                ></b-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label">Price</label></td>
+                            <td>
+                                <b-field>
+                                    <b-input
+                                        placeholder="Price"
+                                        name="price"
+                                        v-model="selectProduct.price"
+                                    ></b-input
+                                ></b-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label">Title</label></td>
+                            <td>
+                                <b-field>
+                                    <b-input
+                                        name="title"
+                                        placeholder="Title"
+                                        v-model="selectProduct.title"
+                                    ></b-input>
+                                </b-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label">Description</label></td>
+                            <td>
+                                <b-field>
+                                    <textarea
+                                        placeholder="Description"
+                                        class="textarea"
+                                        v-model="selectProduct.description"
+                                    ></textarea>
+                                </b-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label">Creator Email</label></td>
+                            <td>
+                                <b-field>
+                                    <b-input
+                                        placeholder="Email"
+                                        v-model="selectProduct.creator_email"
+                                    >
+                                    </b-input>
+                                </b-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label">Inventory</label></td>
+                            <td>
+                                <b-field>
+                                    <b-input
+                                        type="number"
+                                        v-model="selectProduct.inventory"
+                                        placeholder="Inventory"
+                                    ></b-input
+                                ></b-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label">Duration(days)</label></td>
+                            <td>
+                                <b-field>
+                                    <b-input
+                                        type="number"
+                                        placeholder="Duration(days)"
+                                        v-model="selectProduct.duration"
+                                    >
+                                    </b-input>
+                                </b-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="label">Age range(Min-Max)</label>
+                            </td>
+                            <td>
+                                <div class="columns">
+                                    <div class="column ">
+                                        <b-field>
+                                            <b-input
+                                                type="number"
+                                                v-model="selectProduct.age_min"
+                                            ></b-input
+                                        ></b-field>
+                                    </div>
+                                    <div class="column">
+                                        <b-field>
+                                            <b-input
+                                                type="number"
+                                                v-model="selectProduct.age_max"
+                                            ></b-input
+                                        ></b-field>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="label">Shopify PDP Image</label>
+                            </td>
+                            <td>
+                                <div class="columns">
+                                    <div class="column ">
+                                        <b-field
+                                            class="file is-primary"
+                                            :class="{
+                                                'has-name': !!shopify_pdp_file
+                                            }"
+                                        >
+                                            <b-upload
+                                                @change.native="onPDPFileChange"
+                                                v-model="shopify_pdp_file"
+                                                class="file-label"
+                                                rounded
+                                            >
+                                                <span class="file-cta">
+                                                    <b-icon
+                                                        class="file-icon"
+                                                        icon="upload"
+                                                    ></b-icon>
+                                                    <span class="file-label"
+                                                        >Click to upload</span
+                                                    >
+                                                </span>
+                                            </b-upload>
+                                        </b-field>
+                                    </div>
+                                    <div
+                                        class="column"
+                                        v-if="
+                                            selectProduct.shopify_pdp_image ||
+                                                shopify_pdp_file
+                                        "
+                                    >
+                                        <b-image
+                                            v-if="shopify_pdp_image"
+                                            :src="shopify_pdp_image"
+                                            class="is-64x64"
+                                        ></b-image>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="label">Zoom banner</label>
+                            </td>
+                            <td>
+                                <div class="columns">
+                                    <div class="column ">
+                                        <b-field
+                                            class="file is-primary"
+                                            :class="{
+                                                'has-name': !!zoom_banner_file
+                                            }"
+                                        >
+                                            <b-upload
+                                                @change.native="
+                                                    onBannerFileChange
+                                                "
+                                                v-model="zoom_banner_file"
+                                                class="file-label"
+                                                rounded
+                                            >
+                                                <span class="file-cta">
+                                                    <b-icon
+                                                        class="file-icon"
+                                                        icon="upload"
+                                                    ></b-icon>
+                                                    <span class="file-label"
+                                                        >Click to upload</span
+                                                    >
+                                                </span>
+                                            </b-upload>
+                                        </b-field>
+                                    </div>
+                                    <div
+                                        class="column"
+                                        v-if="
+                                            selectProduct.zoom_banner ||
+                                                zoom_banner_file
+                                        "
+                                    >
+                                        <b-image
+                                            :src="zoom_banner_image"
+                                            class="is-64x64"
+                                        ></b-image>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="label">Zoom Item Type</label>
+                            </td>
+                            <td>
+                                <b-field>
+                                    <b-select
+                                        placeholder="Select a Zoom Item Type"
+                                        v-model="selectProduct.zoom_item_type"
+                                    >
+                                        <option value="event">Event</option>
+                                    </b-select></b-field
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="label">Master SKU</label>
+                            </td>
+                            <td>
+                                <b-field>
+                                    <b-input
+                                        name="master_sku"
+                                        placeholder="Master SKU"
+                                        v-model="selectProduct.master_sku"
+                                    ></b-input
+                                ></b-field>
+                            </td>
+                        </tr>
+                    </table>
                 </section>
 
                 <footer class="modal-card-foot">
@@ -141,11 +361,33 @@ export default {
     data() {
         return {
             isFormModalActive: false,
-            selectProduct: {},
+            shopify_pdp_file: null,
+            zoom_banner_file: null,
+            shopify_pdp_image: "",
+            zoom_banner_image: "",
+            selectProduct: {
+                inventory: 95,
+                age_min: 1,
+                age_max: 1,
+                duration: 1,
+                zoom_item_type: "event",
+                zoom_banner: "",
+                shopify_pdp_image: ""
+            },
             isDisableButtonSave: false
         };
     },
     methods: {
+        onPDPFileChange(e) {
+            const file = e.target.files[0];
+            this.shopify_pdp_image = URL.createObjectURL(file);
+            console.log(this.shopify_pdp_image, "this.shopify_pdp_image");
+        },
+        onBannerFileChange(e) {
+            const file = e.target.files[0];
+            this.zoom_banner_image = URL.createObjectURL(file);
+            console.log(this.zoom_banner_image, "this.zoom_banner_image");
+        },
         formatCurrency(amount) {
             amount = amount / 100;
             return amount.toLocaleString("en-US", {
@@ -178,8 +420,21 @@ export default {
                 });
         },
         handleApplyChange() {
+            console.log(this.selectProduct, "this.selectProduct");
+            let data = new FormData();
+            Object.entries(this.selectProduct).forEach(([key, value]) => {
+                data.append(key, value);
+            });
+            data.append("shopify_pdp_image", this.shopify_pdp_file);
+            data.append("zoom_banner", this.zoom_banner_file);
+
+            const config = {
+                headers: {
+                    "content-type": "multipart/form-data"
+                }
+            };
             axios
-                .post("/api/products/add", this.selectProduct)
+                .post("/api/products/add", data, config)
                 .then(response => {
                     this.paymentProcessing = false;
                     console.log(response);
@@ -195,7 +450,25 @@ export default {
         handleOpenModalEdit(row) {
             this.isFormModalActive = true;
             this.selectProduct = row;
+            this.shopify_pdp_image =
+                "images/" + this.selectProduct.shopify_pdp_image;
+            this.zoom_banner_image = "images/" + this.selectProduct.zoom_banner;
             this.isDisableButtonSave = false;
+            this.zoom_banner_file = null;
+            this.shopify_pdp_file = null;
+        },
+        handleOpenModalAdd() {
+            this.isFormModalActive = true;
+            this.selectProduct = {
+                inventory: 95,
+                age_min: 1,
+                age_max: 1,
+                duration: 1,
+                zoom_item_type: "event"
+            };
+            this.isDisableButtonSave = false;
+            this.zoom_banner_file = null;
+            this.shopify_pdp_file = null;
         }
     },
     computed: {
