@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -83,8 +84,18 @@ class ProductController extends Controller
     {
         try {
             $product = Product::where('id', $request->input('id'))->first();
-            unlink("images/".$product->shopify_pdp_image);
-            unlink("images/".$product->zoom_banner);
+            $image_path = "images/".$product->shopify_pdp_image;
+            var_dump($image_path);
+            if (File::isFile($image_path)) {
+                //File::delete($image_path);
+                unlink($image_path);
+            }
+
+            $image_path = "images/".$product->zoom_banner;
+            if (File::isFile($image_path)) {
+                //File::delete($image_path);
+                unlink($image_path);
+            }
             return $product->delete(); //returns true/false
 
         } catch (\Exception $e) {
