@@ -17,6 +17,9 @@ jobs:
           script: |
             bash /var/www/shop-demo.dadventures.com/user-activity-log/scripts/deploy-dev.sh
         env:
-          HOST:  ${{ secrets.SSH_DEV_DEPLOYMENT_HOST }}
-          USERNAME: ${{ secrets.SSH_DEV_DEPLOYMENT_USER }}
-          PASSWORD: ${{ secrets.SSH_DEV_DEPLOYMENT_PASSWORD }}
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          script: ls
+
