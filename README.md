@@ -1,5 +1,7 @@
 ## Install
 
+    #rename env.dev to .env
+    # change DB_HOST=127.0.0.1 to DB_HOST=mysql
     # build and run docker containers
     $ docker-compose up
 
