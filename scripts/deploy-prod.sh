@@ -11,8 +11,8 @@ DEPLOY_BRANCH="master"
 
 # Pull code from repository
 echo "Pulling in the latest changes from repository"
-( cd "${BASE_PATH}" && git fetch --all --prune && git reset --hard origin/${DEPLOY_BRANCH} && git checkout origin/${DEPLOY_BRANCH} )
-
+#( cd "${BASE_PATH}" && git fetch --all --prune && git reset --hard origin/${DEPLOY_BRANCH} && git checkout origin/${DEPLOY_BRANCH} )
+(cd "${BASE_PATH}" && git checkout ${DEPLOY_BRANCH} && git up)
 cd "${BASE_PATH}"
 
 ls -al
