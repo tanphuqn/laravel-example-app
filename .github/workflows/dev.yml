@@ -15,7 +15,7 @@ jobs:
         uses: appleboy/ssh-action@v0.0.6
         with:
           script: |
-            bash /var/www/shop-demo.dadventures.com/user-activity-log/scripts/deploy-dev.sh
+            bash /var/www/shop-demo.dadventures.com/scripts/deploy-dev.sh
         env:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
