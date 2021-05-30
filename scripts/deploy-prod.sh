@@ -3,7 +3,7 @@
 set -euo pipefail
 #set -x # Set for debugging, will print each command before executing
 
-echo "SSH: Connecting to host for deployment of dev environment"
+echo "SSH: Connecting to host for deployment of prod environment"
 
 # Some vars required in the script
 BASE_PATH="/var/www/shop-demo.dadventures.com"
@@ -18,7 +18,7 @@ cd "${BASE_PATH}"
 ls -al
 
 echo "Copy .env"
-php -r "file_exists('.env') || copy('.env.dev', '.env');"
+php -r "file_exists('.env') || copy('.env.prod', '.env');"
 
 echo "Generate key"
 php artisan key:generate
