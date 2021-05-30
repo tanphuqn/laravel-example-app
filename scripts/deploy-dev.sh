@@ -31,7 +31,7 @@ echo "Install dependencies"
 composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 #composer dump-autoload
 
-npm install
+npm install --save-dev
 echo "Build assets"
 npm run prod
 
