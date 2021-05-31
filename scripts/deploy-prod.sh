@@ -24,8 +24,8 @@ echo "Generate key"
 php artisan key:generate
 
 # echo "Directory Permissions"
-# chmod -R 777 storage bootstrap/cache
-# chmod a+rwx public -R
+chmod -R 777 storage bootstrap/cache node_modules
+chmod a+rwx public -R
 
 echo "Install dependencies"
 #composer install
