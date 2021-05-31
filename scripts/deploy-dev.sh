@@ -22,9 +22,9 @@ php -r "file_exists('.env') || copy('.env.dev', '.env');"
 echo "Generate key"
 php artisan key:generate
 
-# echo "Directory Permissions"
-# chmod -R 777 storage bootstrap/cache
-# chmod a+rwx public -R
+echo "Directory Permissions"
+chmod -R 777 storage bootstrap/cache
+chmod a+rwx public -R
 
 echo "Install dependencies"
 #composer install
