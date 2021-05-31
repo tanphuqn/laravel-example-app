@@ -32,7 +32,7 @@ echo "Install dependencies"
 composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 #composer dump-autoload
 
-npm install
+yarn install
 echo "Build assets"
 npm run prod
 
