@@ -1,8 +1,16 @@
 <template>
     <section class="text-gray-700 body-font overflow-hidden" v-if="product">
         <div class="container px-12 py-24 mx-auto">
-            <div class="lg:w-3/5 mx-auto flex flex-wrap">
+            <div class=" mx-auto flex flex-wrap">
                 <img
+                    v-if="product.shopify_pdp_image"
+                    :src="'images/' + product.shopify_pdp_image"
+                    webp-fallback=".jpg"
+                    alt="Shopify PDP Image"
+                    class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                />
+                <img
+                    v-else
                     alt="ecommerce"
                     class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
                     src="https://dummyimage.com/640x640"
@@ -13,27 +21,51 @@
                         v-text="product.name"
                     ></h1>
                     <p class="leading-relaxed" v-text="product.description"></p>
-                    <p class="mt-6">
-                        Color:
-                        <select v-model="product.color">
-                            <option disabled value="">Please select one</option>
-                            <option>Blue</option>
-                            <option>Red</option>
-                            <option>Black</option>
-                        </select>
-                        <span>Selected: {{ product.color }}</span>
-                    </p>
-
-                    <p class="mt-6">
-                        Size:
-                        <select v-model="product.size">
-                            <option disabled value="">Please select one</option>
-                            <option>M</option>
-                            <option>L</option>
-                            <option>XL</option>
-                        </select>
-                        <span>Selected: {{ product.size }}</span>
-                    </p>
+                    <div>
+                        <table>
+                            <tr>
+                                <td width="200px">
+                                    <label class="label">Creator Email</label>
+                                </td>
+                                <td>{{ product.creator_email }}</td>
+                            </tr>
+                            <tr>
+                                <td width="200px">
+                                    <label class="label">Inventory</label>
+                                </td>
+                                <td>{{ product.inventory }}</td>
+                            </tr>
+                            <tr>
+                                <td width="200px">
+                                    <label class="label">Duration(days)</label>
+                                </td>
+                                <td>{{ product.duration }}</td>
+                            </tr>
+                            <tr>
+                                <td width="200px">
+                                    <label class="label"
+                                        >Age range(Min-Max)</label
+                                    >
+                                </td>
+                                <td>
+                                    {{ product.age_min }} -
+                                    {{ product.age_max }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="200px">
+                                    <label class="label">Zoom Item Type</label>
+                                </td>
+                                <td>{{ product.zoom_item_type }}</td>
+                            </tr>
+                            <tr>
+                                <td width="200px">
+                                    <label class="label">Master SKU</label>
+                                </td>
+                                <td>{{ product.master_sku }}</td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="flex mt-6 pt-4 border-t-2 border-gray-200">
                         <span
                             class="title-font font-medium text-2xl text-gray-900"
@@ -50,6 +82,86 @@
             </div>
         </div>
     </section>
+    <!-- <section>
+        <article class="media">
+            <figure class="media-left">
+                <img
+                    v-if="product.shopify_pdp_image"
+                    :src="'images/' + product.shopify_pdp_image"
+                    webp-fallback=".jpg"
+                    alt="Shopify PDP Image"
+                    width="500"
+                    height="600"
+                />
+                <img
+                    v-else
+                    alt="ecommerce"
+                    class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                    src="https://dummyimage.com/640x640"
+                />
+            </figure>
+            <div class="media-content">
+                <div class="title">{{ product.name }}</div>
+                <div class="subtitle">{{ formatCurrency(product.price) }}</div>
+                <div class="content">{{ product.description }}</div>
+                <div class="field">
+                    <table>
+                        <tr>
+                            <td width="200px">
+                                <label class="label">Creator Email</label>
+                            </td>
+                            <td>{{ product.creator_email }}</td>
+                        </tr>
+                        <tr>
+                            <td width="200px">
+                                <label class="label">Inventory</label>
+                            </td>
+                            <td>{{ product.inventory }}</td>
+                        </tr>
+                        <tr>
+                            <td width="200px">
+                                <label class="label">Duration(days)</label>
+                            </td>
+                            <td>{{ product.duration }}</td>
+                        </tr>
+                        <tr>
+                            <td width="200px">
+                                <label class="label">Age range(Min-Max)</label>
+                            </td>
+                            <td>
+                                {{ product.age_min }} - {{ product.age_max }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="200px">
+                                <label class="label">Zoom Item Type</label>
+                            </td>
+                            <td>{{ product.zoom_item_type }}</td>
+                        </tr>
+                        <tr>
+                            <td width="200px">
+                                <label class="label">Master SKU</label>
+                            </td>
+                            <td>{{ product.master_sku }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <nav class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <b-button
+                                expanded
+                                type="is-link"
+                                @click="$store.commit('addToCart', product)"
+                            >
+                                Add To Cart</b-button
+                            >
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </article>
+    </section> -->
 </template>
 <script>
 export default {

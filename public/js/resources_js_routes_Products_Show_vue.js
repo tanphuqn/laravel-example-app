@@ -64,6 +64,118 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     formatCurrency: function formatCurrency(amount) {
@@ -190,15 +302,25 @@ var render = function() {
         { staticClass: "text-gray-700 body-font overflow-hidden" },
         [
           _c("div", { staticClass: "container px-12 py-24 mx-auto" }, [
-            _c("div", { staticClass: "lg:w-3/5 mx-auto flex flex-wrap" }, [
-              _c("img", {
-                staticClass:
-                  "lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded",
-                attrs: {
-                  alt: "ecommerce",
-                  src: "https://dummyimage.com/640x640"
-                }
-              }),
+            _c("div", { staticClass: " mx-auto flex flex-wrap" }, [
+              _vm.product.shopify_pdp_image
+                ? _c("img", {
+                    staticClass:
+                      "lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded",
+                    attrs: {
+                      src: "images/" + _vm.product.shopify_pdp_image,
+                      "webp-fallback": ".jpg",
+                      alt: "Shopify PDP Image"
+                    }
+                  })
+                : _c("img", {
+                    staticClass:
+                      "lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded",
+                    attrs: {
+                      alt: "ecommerce",
+                      src: "https://dummyimage.com/640x640"
+                    }
+                  }),
               _vm._v(" "),
               _c(
                 "div",
@@ -217,107 +339,51 @@ var render = function() {
                     domProps: { textContent: _vm._s(_vm.product.description) }
                   }),
                   _vm._v(" "),
-                  _c("p", { staticClass: "mt-6" }, [
-                    _vm._v(
-                      "\n                    Color:\n                    "
-                    ),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.product.color,
-                            expression: "product.color"
-                          }
-                        ],
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.product,
-                              "color",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Please select one")
-                        ]),
+                  _c("div", [
+                    _c("table", [
+                      _c("tr", [
+                        _vm._m(0),
                         _vm._v(" "),
-                        _c("option", [_vm._v("Blue")]),
+                        _c("td", [_vm._v(_vm._s(_vm.product.creator_email))])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(1),
                         _vm._v(" "),
-                        _c("option", [_vm._v("Red")]),
+                        _c("td", [_vm._v(_vm._s(_vm.product.inventory))])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(2),
                         _vm._v(" "),
-                        _c("option", [_vm._v("Black")])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", [
-                      _vm._v("Selected: " + _vm._s(_vm.product.color))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "mt-6" }, [
-                    _vm._v("\n                    Size:\n                    "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.product.size,
-                            expression: "product.size"
-                          }
-                        ],
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.product,
-                              "size",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { disabled: "", value: "" } }, [
-                          _vm._v("Please select one")
-                        ]),
+                        _c("td", [_vm._v(_vm._s(_vm.product.duration))])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(3),
                         _vm._v(" "),
-                        _c("option", [_vm._v("M")]),
+                        _c("td", [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(_vm.product.age_min) +
+                              " -\n                                " +
+                              _vm._s(_vm.product.age_max) +
+                              "\n                            "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(4),
                         _vm._v(" "),
-                        _c("option", [_vm._v("L")]),
+                        _c("td", [_vm._v(_vm._s(_vm.product.zoom_item_type))])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(5),
                         _vm._v(" "),
-                        _c("option", [_vm._v("XL")])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", [
-                      _vm._v("Selected: " + _vm._s(_vm.product.size))
+                        _c("td", [_vm._v(_vm._s(_vm.product.master_sku))])
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
@@ -364,7 +430,56 @@ var render = function() {
       )
     : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { width: "200px" } }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Creator Email")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { width: "200px" } }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Inventory")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { width: "200px" } }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Duration(days)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { width: "200px" } }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Age range(Min-Max)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { width: "200px" } }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Zoom Item Type")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { width: "200px" } }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Master SKU")])
+    ])
+  }
+]
 render._withStripped = true
 
 
