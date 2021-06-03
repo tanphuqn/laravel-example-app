@@ -4,15 +4,15 @@
             <div class=" mx-auto flex flex-wrap">
                 <img
                     v-if="product.shopify_pdp_image"
-                    :src="'images/' + product.shopify_pdp_image"
+                    :src="'/images/' + product.shopify_pdp_image"
                     webp-fallback=".jpg"
-                    alt="Shopify PDP Image"
-                    class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                    :alt="product.name"
+                    class="lg:w-1/2 w-full lg:h-auto h-64 object-center rounded"
                 />
                 <img
                     v-else
-                    alt="ecommerce"
-                    class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                    :alt="product.name"
+                    class="lg:w-1/2 w-full lg:h-auto h-64 object-center rounded"
                     src="https://dummyimage.com/640x640"
                 />
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

@@ -62,6 +62,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     formatCurrency: function formatCurrency(amount) {
@@ -197,14 +211,22 @@ var render = function() {
                       }
                     },
                     [
-                      _c("img", {
-                        staticClass:
-                          "object-cover object-center w-full h-full block",
-                        attrs: {
-                          alt: "ecommerce",
-                          src: "https://dummyimage.com/420x260"
-                        }
-                      })
+                      product.shopify_pdp_image
+                        ? _c("img", {
+                            staticClass: "object-center w-full h-full block",
+                            attrs: {
+                              src: "/images/" + product.shopify_pdp_image,
+                              "webp-fallback": ".jpg",
+                              alt: product.name
+                            }
+                          })
+                        : _c("img", {
+                            staticClass: "object-center w-full h-full block",
+                            attrs: {
+                              alt: product.name,
+                              src: "https://dummyimage.com/640x640"
+                            }
+                          })
                     ]
                   )
                 ],

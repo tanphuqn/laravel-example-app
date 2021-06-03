@@ -39,10 +39,24 @@
                         }"
                     >
                         <img
+                            v-if="product.shopify_pdp_image"
+                            :src="'/images/' + product.shopify_pdp_image"
+                            webp-fallback=".jpg"
+                            :alt="product.name"
+                            class="object-center w-full h-full block"
+                        />
+                        <img
+                            v-else
+                            :alt="product.name"
+                            class="object-center w-full h-full block"
+                            src="https://dummyimage.com/640x640"
+                        />
+
+                        <!-- <img
                             alt="ecommerce"
                             class="object-cover object-center w-full h-full block"
                             src="https://dummyimage.com/420x260"
-                        />
+                        /> -->
                     </router-link>
                 </div>
             </div>

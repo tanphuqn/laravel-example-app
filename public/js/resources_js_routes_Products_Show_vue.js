@@ -306,18 +306,18 @@ var render = function() {
               _vm.product.shopify_pdp_image
                 ? _c("img", {
                     staticClass:
-                      "lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded",
+                      "lg:w-1/2 w-full lg:h-auto h-64 object-center rounded",
                     attrs: {
-                      src: "images/" + _vm.product.shopify_pdp_image,
+                      src: "/images/" + _vm.product.shopify_pdp_image,
                       "webp-fallback": ".jpg",
-                      alt: "Shopify PDP Image"
+                      alt: _vm.product.name
                     }
                   })
                 : _c("img", {
                     staticClass:
-                      "lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded",
+                      "lg:w-1/2 w-full lg:h-auto h-64 object-center rounded",
                     attrs: {
-                      alt: "ecommerce",
+                      alt: _vm.product.name,
                       src: "https://dummyimage.com/640x640"
                     }
                   }),
