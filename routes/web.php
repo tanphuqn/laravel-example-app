@@ -38,14 +38,8 @@ Route::get('email/resend', 'App\Http\Controllers\Auth\VerificationController@res
 
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index'])->name('index');
 
-// Route::get('/admin', function () {
-//     return view('admin');
-// });
-
-
-// Route::any('/{any}', function() {
-//     return view('app');
-// })->where('any', '.*');
-
 Route::get('admin/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
 Route::get('home/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
+Route::any('/{any}', function() {
+    return view('index');
+})->where('any', '.*');
