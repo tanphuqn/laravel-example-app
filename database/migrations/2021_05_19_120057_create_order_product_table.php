@@ -17,10 +17,8 @@ class CreateOrderProductTable extends Migration
             $table->integer('order_id');
             $table->integer('product_id');
             $table->integer('quantity')->default(1);
-            $table->string('color')->nullable();
-            $table->string('size')->nullable();
             $table->longText('metadata')->nullable();
-            $table->string('note');
+            $table->longText('note');
         });
     }
 

@@ -39,13 +39,11 @@ class UserController extends Controller
             foreach (json_decode($request->input('cart'), true) as $item) {
                 // Step 1: create item invoice
                 $invoice_item = $user->tab(
-                    $item["name"] . '.Color:' . $item['color'].'. Size:' . $item['size'],
+                    $item["name"],
                     $item['price'],
                     [
                         // 'quantity' => $item['quantity'],
                         'metadata' => [
-                            // 'color' => $item['color'],
-                            // 'size' => $item['size'],
                             'description' => $item['description'],
                             'creator_email' => $item['creator_email'],
                             'inventory' => $item['inventory'],
@@ -78,10 +76,8 @@ class UserController extends Controller
                 $order->products()
                     ->attach($item['id'], [
                         'quantity' => $item['quantity'],
-                        // 'size' => $item['size'],
-                        // 'color' => $item['color'],
                         'metadata'=>json_encode($item),
-                        'note' => "Size:".$item['size']. ". Color: ".$item['color']
+                        'note' => $item['description']
                     ]
                 );
             }
