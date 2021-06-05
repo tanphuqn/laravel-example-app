@@ -31,9 +31,9 @@ echo "Install dependencies"
 composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 #composer dump-autoload
 
-yarn install
+npm install
 echo "Build assets"
-npm run prod
+npm run dev
 
 echo "Migrate database"
 php artisan migrate
@@ -43,7 +43,6 @@ php artisan config:clear
 php artisan route:cache
 php artisan cache:clear
 php artisan view:clear
-php artisan responsecache:clear
 
 
 echo "Deploy to dev environment completed"

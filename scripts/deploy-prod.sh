@@ -44,7 +44,6 @@ php artisan config:clear
 php artisan route:cache
 php artisan cache:clear
 php artisan view:clear
-php artisan responsecache:clear
 
 
 echo "Deploy to prod environment completed"
