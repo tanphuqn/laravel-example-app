@@ -85,13 +85,11 @@ class ProductController extends Controller
             $image_path = "images/".$product->shopify_pdp_image;
             var_dump($image_path);
             if (File::isFile($image_path)) {
-                //File::delete($image_path);
                 unlink($image_path);
             }
 
             $image_path = "images/".$product->zoom_banner;
             if (File::isFile($image_path)) {
-                //File::delete($image_path);
                 unlink($image_path);
             }
             return $product->delete(); //returns true/false
