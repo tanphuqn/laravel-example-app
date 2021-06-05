@@ -30,9 +30,9 @@
                     <tr v-for="(item, index) in cart" :key="item.id">
                         <td class="p-4">
                             {{ item.name }}<br />
-                            <p class="text-red-600">Color: {{ item.color }}</p>
+                            <!-- <p class="text-red-600">Color: {{ item.color }}</p>
 
-                            <p class="text-blue-600">Size: {{ item.size }}</p>
+                            <p class="text-blue-600">Size: {{ item.size }}</p> -->
                         </td>
                         <td class="p-4" v-text="item.quantity"></td>
                         <td class="p-4" v-text="cartLineTotal(item)"></td>

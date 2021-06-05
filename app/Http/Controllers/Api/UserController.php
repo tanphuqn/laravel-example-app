@@ -44,8 +44,8 @@ class UserController extends Controller
                     [
                         // 'quantity' => $item['quantity'],
                         'metadata' => [
-                            'color' => $item['color'],
-                            'size' => $item['size'],
+                            // 'color' => $item['color'],
+                            // 'size' => $item['size'],
                             'description' => $item['description'],
                             'creator_email' => $item['creator_email'],
                             'inventory' => $item['inventory'],
@@ -78,8 +78,8 @@ class UserController extends Controller
                 $order->products()
                     ->attach($item['id'], [
                         'quantity' => $item['quantity'],
-                        'size' => $item['size'],
-                        'color' => $item['color'],
+                        // 'size' => $item['size'],
+                        // 'color' => $item['color'],
                         'metadata'=>json_encode($item),
                         'note' => "Size:".$item['size']. ". Color: ".$item['color']
                     ]
