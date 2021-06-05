@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -19,7 +18,6 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        // $product->load();
         return $product;
     }
     public function addProduct(Request $request)
