@@ -2,8 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-    <admin-product-component ></admin-product-component>
-    </div>
+    <router-view></router-view>
 </div>
 @endsection

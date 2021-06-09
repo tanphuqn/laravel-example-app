@@ -24,4 +24,15 @@ module.exports = [
         name: 'order.summary',
         component: () => import('./routes/Order/Summary.vue')
     },
+
+    {
+        path: '/admin',
+        name: 'admin',
+        component: () => import('./components/ProductList.vue')
+    },
+    {
+        path: '/admin/product/:id?',
+        name: 'admin.products.add',
+        component: () => import('./components/AddProduct.vue')
+    },
 ]

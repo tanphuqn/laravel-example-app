@@ -107,10 +107,6 @@ const store = new Vuex.Store({
 });
 
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// Vue.component('index-front-component', require('./components/front/Index.vue').default);
-Vue.component('admin-product-component', require('./components/ProductList.vue').default);
-
 const app = new Vue({
     router,
     store,
